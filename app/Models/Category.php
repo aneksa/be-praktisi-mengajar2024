@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Product extends Model
+class Category extends Model
 {
     use HasFactory;
 
@@ -14,18 +14,14 @@ class Product extends Model
         'name',
         'slug',
         'description',
-        'sku',
-        'category_id',
-        'price',
-        'stock',
-        'solds'
+        'parent_id',
     ];
 
     /**
      * Relationships
      */
-    public function category(): BelongsTo
+    public function parent(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'parent_id');
     }
 }

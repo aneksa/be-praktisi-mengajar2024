@@ -23,9 +23,10 @@ class ReviewResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('product_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('product_id')
+                    ->relationship('product', 'name')
+                    ->searchable()
+                    ->preload(),
                 Forms\Components\TextInput::make('user_id')
                     ->numeric(),
                 Forms\Components\TextInput::make('rating')
@@ -40,15 +41,13 @@ class ReviewResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('product_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('product.name')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('user_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('user.name')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('rating')
-                    ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('comments'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

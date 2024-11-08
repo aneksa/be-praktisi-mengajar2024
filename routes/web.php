@@ -24,3 +24,4 @@ Route::get('/home', function () {
 });
 
 Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products/{slug}', [ProductController::class, 'show']);

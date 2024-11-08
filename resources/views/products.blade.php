@@ -410,7 +410,7 @@
                                     </div>
                                     <div class="product__discount__item__text">
                                         <span>{{$product->category->name}}</span>
-                                        <h5><a href="#">{{$product->name}}</a></h5>
+                                        <h5><a href="/products/{{$product->slug}}">{{$product->name}}</a></h5>
                                         <div class="product__item__price">Rp {{number_format($product->price, 0)}}</div>
                                     </div>
                                 </div>
